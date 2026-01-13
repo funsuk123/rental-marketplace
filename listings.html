@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browse Properties | RentalConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">🏠 RentalConnect</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="listings.html" class="active">Browse Listings</a>
+                <a href="add-property.html">List Property</a>
+                <a href="login.html" class="btn-login">Login/Signup</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="listings-page">
+            <!-- Filters Sidebar -->
+            <aside class="filters">
+                <h3><i class="fas fa-filter"></i> Filters</h3>
+                
+                <div class="filter-section">
+                    <h4>Price Range ($)</h4>
+                    <input type="range" min="0" max="5000" value="2500" class="price-slider">
+                    <div class="price-range">
+                        <span id="min-price">0</span> - <span id="max-price">5000</span>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h4>Property Type</h4>
+                    <label><input type="checkbox" checked> Apartment</label>
+                    <label><input type="checkbox"> House</label>
+                    <label><input type="checkbox"> Studio</label>
+                    <label><input type="checkbox"> Villa</label>
+                </div>
+                
+                <div class="filter-section">
+                    <h4>Bedrooms</h4>
+                    <label><input type="radio" name="beds" checked> Any</label>
+                    <label><input type="radio" name="beds"> 1</label>
+                    <label><input type="radio" name="beds"> 2</label>
+                    <label><input type="radio" name="beds"> 3+</label>
+                </div>
+                
+                <button class="btn-apply-filters">Apply Filters</button>
+                <button class="btn-reset-filters">Reset</button>
+            </aside>
+
+            <!-- Listings Grid -->
+            <main class="listings-container">
+                <div class="listings-header">
+                    <h1>Available Properties</h1>
+                    <p id="results-count">Loading properties...</p>
+                </div>
+                
+                <div class="listings-grid" id="allProperties">
+                    <!-- Properties loaded by JavaScript -->
+                </div>
+                
+                <div class="pagination">
+                    <button class="btn-prev"><i class="fas fa-chevron-left"></i> Previous</button>
+                    <span class="page-numbers">Page 1 of 3</span>
+                    <button class="btn-next">Next <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 RentalConnect. Connecting owners and renters.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

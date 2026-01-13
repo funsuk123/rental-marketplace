@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RentalConnect | Find Your Perfect Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">🏠 RentalConnect</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="listings.html">Browse Listings</a>
+                <a href="add-property.html">List Property</a>
+                <a href="login.html" class="btn-login">Login/Signup</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Find Your Perfect Rental Home</h1>
+            <p>Connecting property owners with reliable tenants</p>
+            
+            <!-- Search Bar -->
+            <div class="search-box">
+                <input type="text" placeholder="Enter city, area, or ZIP code">
+                <select>
+                    <option>Property Type</option>
+                    <option>Apartment</option>
+                    <option>House</option>
+                    <option>Studio</option>
+                    <option>Villa</option>
+                </select>
+                <select>
+                    <option>Price Range</option>
+                    <option>$500 - $1000</option>
+                    <option>$1000 - $2000</option>
+                    <option>$2000+</option>
+                </select>
+                <button class="btn-search"><i class="fas fa-search"></i> Search</button>
+            </div>
+            
+            <div class="user-options">
+                <a href="listings.html" class="btn-renter">👤 I'm Looking to Rent</a>
+                <a href="add-property.html" class="btn-owner">🏢 I'm a Property Owner</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>For Renters</h3>
+                    <p>Search properties, filter by your needs, contact owners directly</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>For Owners</h3>
+                    <p>List your property for free, manage inquiries, find tenants</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Connect</h3>
+                    <p>Both parties communicate securely through our platform</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Listings Preview -->
+    <section class="featured-listings">
+        <div class="container">
+            <h2>Featured Properties</h2>
+            <div class="listings-grid" id="featuredProperties">
+                <!-- Properties will load here via JavaScript -->
+            </div>
+            <a href="listings.html" class="btn-view-all">View All Properties →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 RentalConnect. Connecting owners and renters.</p>
+            <p>📧 contact@rentalconnect.com | 📞 1-800-RENT-NOW</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
