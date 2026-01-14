@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Owner Dashboard | RentalConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .owner-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 1rem 2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .inquiries-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status.viewed {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .status.scheduled {
+            background: #d4edda;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">🏠 RentalConnect</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="add-property.html">List Property</a>
+                <a href="owner-dashboard.html" class="active">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="#" class="logout-btn" onclick="logoutUser()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Owner Dashboard</h1>
+            <p>Manage your properties and inquiries</p>
+        </div>
+
+        <div class="owner-stats">
+            <div class="stat-card">
+                <span class="stat-number" id="totalProperties">0</span>
+                <span>Total Properties</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="activeListings">0</span>
+                <span>Active Listings</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="totalInquiries">0</span>
+                <span>Total Inquiries</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="responseRate">0%</span>
+                <span>Response Rate</span>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <button class="action-btn" onclick="window.location.href='add-property.html'">
+                <i class="fas fa-plus"></i> Add New Property
+            </button>
+            <button class="action-btn" onclick="showMyProperties()">
+                <i class="fas fa-home"></i> View My Properties
+            </button>
+            <button class="action-btn" onclick="showInquiries()">
+                <i class="fas fa-envelope"></i> View Inquiries
+            </button>
+            <button class="action-btn" onclick="showAnalytics()">
+                <i class="fas fa-chart-bar"></i> View Analytics
+            </button>
+        </div>
+
+        <div class="my-properties">
+            <h2>My Properties</h2>
+            <div id="ownerProperties" class="listings-grid">
+                <!-- Owner's properties will load here -->
+            </div>
+        </div>
+
+        <div class="recent-inquiries">
+            <h2>Recent Inquiries</h2>
+            <div class="inquiries-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Renter</th>
+                            <th>Date</th>
+                            <th>Message</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inquiriesTable">
+                        <!-- Inquiries will load here -->
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 3rem;">
+                                <i class="far fa-envelope" style="font-size: 3rem; color: #ddd;"></i>
+                                <p>No inquiries yet</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> RentalConnect. Owner Dashboard</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

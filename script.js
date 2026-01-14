@@ -51,7 +51,8 @@ const properties = [
 ];
 
 // Display featured properties on homepage
-function displayFeaturedProperties() {
+
+  function displayFeaturedProperties() {
     const container = document.getElementById('featuredProperties');
     const allContainer = document.getElementById('allProperties');
     
@@ -62,20 +63,29 @@ function displayFeaturedProperties() {
                 <div class="property-card" data-id="${property.id}">
                     <div class="property-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('${property.image}'); background-size: cover; background-position: center;">
                         <div class="property-type">${property.type}</div>
+                        <div class="property-price-badge">$${property.price}/month</div>
                     </div>
                     <div class="property-info">
-                        <div class="property-price">$${property.price}/month</div>
                         <h3 class="property-title">${property.title}</h3>
-                        <p class="property-address">${property.address}</p>
+                        <p class="property-address">📍 ${property.address}</p>
                         <div class="property-features">
-                            <span>${property.beds} bed${property.beds !== 'Studio' ? 's' : ''}</span>
-                            <span>${property.baths} bath${property.baths > 1 ? 's' : ''}</span>
-                            <span>${property.sqft} sqft</span>
+                            <span><i class="fas fa-bed"></i> ${property.beds} ${property.beds === 'Studio' ? '' : 'bed' + (property.beds > 1 ? 's' : '')}</span>
+                            <span><i class="fas fa-bath"></i> ${property.baths} bath${property.baths > 1 ? 's' : ''}</span>
+                            <span><i class="fas fa-ruler-combined"></i> ${property.sqft} sqft</span>
                         </div>
                         <div class="property-amenities">
                             ${property.amenities.slice(0, 3).map(amenity => `<span>${amenity}</span>`).join('')}
+                            ${property.amenities.length > 3 ? `<span>+${property.amenities.length - 3} more</span>` : ''}
                         </div>
-                        <a href="#" class="btn-view-details" onclick="viewPropertyDetails(${property.id})">View Details</a>
+                        <p class="property-description">${property.description.substring(0, 100)}...</p>
+                        <div class="property-actions">
+                            <button class="btn-contact" onclick="contactOwner(${property.id})">
+                                <i class="fas fa-envelope"></i> Contact Owner
+                            </button>
+                            <button class="btn-details" onclick="viewPropertyDetails(${property.id})">
+                                <i class="fas fa-info-circle"></i> Details
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -83,8 +93,7 @@ function displayFeaturedProperties() {
         
         if (container) {
             container.innerHTML = html;
-            // Update results count
-            document.getElementById('resultsCount').textContent = `${properties.length} properties found`;
+            document.getElementById('resultsCount').textContent = `${properties.length} properties available`;
         }
         
         if (allContainer) {
@@ -93,6 +102,7 @@ function displayFeaturedProperties() {
         }
     }
 }
+
 
 // View property details
 function viewPropertyDetails(id) {
@@ -295,4 +305,45 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
+});
+// Update navigation based on login status
+function updateNavigation() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const loginBtn = document.querySelector('.btn-login');
+    
+    if (loginBtn && currentUser) {
+        // User is logged in
+        loginBtn.innerHTML = `<i class="fas fa-user"></i> ${currentUser.firstName}`;
+        loginBtn.href = currentUser.userType === 'owner' ? 'owner-dashboard.html' : 'renter-dashboard.html';
+        
+        // Check if logout button already exists
+        if (!document.querySelector('.logout-btn')) {
+            // Create logout button
+            const logoutBtn = document.createElement('a');
+            logoutBtn.href = '#';
+            logoutBtn.className = 'logout-btn';
+            logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i>';
+            logoutBtn.title = 'Logout';
+            logoutBtn.onclick = function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    logoutUser();
+                }
+            };
+            
+            // Add to navigation
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks) {
+                navLinks.appendChild(logoutBtn);
+            }
+        }
+    }
+}
+
+// Call this when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    updateNavigation();
+    
+    // Also call existing initialization
+    // ... (your existing initialization code)
 });
