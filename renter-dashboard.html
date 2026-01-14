@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Renter Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dashboard { padding: 2rem; max-width: 1200px; margin: auto; }
+        .welcome { background: #3498db; color: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem; }
+        .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+        .card { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">🏠 RentalConnect</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="listings.html">Browse</a>
+                <a href="#" onclick="logoutUser()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <div class="welcome">
+            <h1>Welcome, Renter!</h1>
+            <p>Your dashboard for finding perfect rentals</p>
+        </div>
+        
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3><i class="fas fa-search"></i> Find Rentals</h3>
+                <p>Browse available properties</p>
+                <a href="listings.html" class="btn-renter">Search Now</a>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-heart"></i> Saved Properties</h3>
+                <p>View your favorite listings</p>
+                <button class="btn-renter">View Saved</button>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-cog"></i> Settings</h3>
+                <p>Manage your account</p>
+                <button class="btn-renter">Account Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
